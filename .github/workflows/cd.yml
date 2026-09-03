@@ -71,12 +71,40 @@ jobs:
           port: 22
           script: |
             set -e
-            echo "===> Navigating to project directory..."
-            cd /home/${{ secrets.EC2_USERNAME }}/vaani_book || cd /var/www/vaani_book
+            echo "===> Resolving project directory on EC2..."
+            PROJECT_DIR=""
+            for dir in "/home/${{ secrets.EC2_USERNAME }}/VaaniBook" \
+                       "/home/${{ secrets.EC2_USERNAME }}/vaani_book" \
+                       "/home/${{ secrets.EC2_USERNAME }}/vaanibook" \
+                       "/var/www/VaaniBook" \
+                       "/var/www/vaani_book" \
+                       "/var/www/vaanibook"; do
+              if [ -d "$dir" ]; then
+                PROJECT_DIR="$dir"
+                echo "Found existing directory: $PROJECT_DIR"
+                break
+              fi
+            done
+
+            if [ -z "$PROJECT_DIR" ]; then
+              PROJECT_DIR="/home/${{ secrets.EC2_USERNAME }}/vaani_book"
+              echo "Directory not found. Cloning repository to $PROJECT_DIR..."
+              git clone https://github.com/${{ github.repository }}.git "$PROJECT_DIR"
+            fi
+
+            echo "===> Navigating to $PROJECT_DIR..."
+            cd "$PROJECT_DIR"
 
             echo "===> Pulling latest code..."
+            git fetch origin main || git fetch origin master
             git checkout main || git checkout master
             git pull origin main || git pull origin master
+
+            echo "===> Checking environment configuration..."
+            if [ ! -f ./backend/.env ] && [ -f ./backend/.env.example ]; then
+              echo "Creating initial backend/.env from .env.example..."
+              cp ./backend/.env.example ./backend/.env
+            fi
 
             echo "===> Rebuilding and restarting containers..."
             docker compose down
