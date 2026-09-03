@@ -5,11 +5,11 @@ from app.services.sarvam_outbound import trigger_outbound_call
 router = APIRouter(prefix="/api/call", tags=["Call"])
 
 class CallRequest(BaseModel):
-    phone_number: str | None = None
+    phone_number: str
     customer_name: str | None = None
 
 @router.post("")
-async def make_call(request: CallRequest = CallRequest()):
+async def make_call(request: CallRequest):
     try:
         data = await trigger_outbound_call(request.phone_number)
         return {"status": "success", "customer_name": request.customer_name, "data": data}

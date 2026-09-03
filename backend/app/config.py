@@ -10,6 +10,5 @@ class Settings(BaseSettings):
     sarvam_app_version: int = 1
     sarvam_connection_id: str = ""
     sarvam_agent_phone: str = ""
-    default_recipient_phone: str = ""
 
 settings = Settings()
