@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DineCall AI — Voice Booking Agent",
+  title: "VaaniBook — Voice Booking Agent",
   description:
     "Instant table reservations handled directly by our restaurant booking AI voice agent.",
   icons: {

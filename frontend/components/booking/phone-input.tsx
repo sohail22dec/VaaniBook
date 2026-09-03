@@ -123,10 +123,10 @@ export function PhoneInput({
             type="tel"
             value={nationalNumber}
             onChange={handleNumberChange}
-            placeholder={currentCountry.mask}
+            placeholder={`Enter phone number (e.g. ${currentCountry.mask})`}
             disabled={disabled}
             className={cn(
-              "h-12 bg-[#111113] border-[#27272A] pl-10 text-sm tracking-wide font-mono placeholder:text-[#71717A] placeholder:font-sans focus:border-[#5EEAD4] focus:ring-[#5EEAD4]/20",
+              "h-12 bg-[#111113] border-[#27272A] pl-10 text-sm tracking-wide font-mono placeholder:text-[#52525B] placeholder:font-sans focus:border-[#5EEAD4] focus:ring-[#5EEAD4]/20",
               error && "border-[#F87171] focus:border-[#F87171] focus:ring-[#F87171]/20"
             )}
             autoComplete="tel-national"

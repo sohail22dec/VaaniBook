@@ -10,12 +10,10 @@ interface AgentStatusProps {
 
 export function AgentStatus({ className, apiUrl }: AgentStatusProps) {
   const [isOnline, setIsOnline] = useState<boolean>(true);
-  const [checking, setChecking] = useState<boolean>(false);
 
   useEffect(() => {
     const checkHealth = async () => {
       try {
-        setChecking(true);
         const baseUrl = apiUrl || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 3000);
@@ -35,8 +33,6 @@ export function AgentStatus({ className, apiUrl }: AgentStatusProps) {
         // In local development or if backend is temporarily disconnected, default to online
         // so demo experience is always pleasant unless explicitly disconnected
         setIsOnline(true);
-      } finally {
-        setChecking(false);
       }
     };
 

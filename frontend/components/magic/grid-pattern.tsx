@@ -25,7 +25,7 @@ export function GridPattern({
     <svg
       aria-hidden="true"
       className={cn(
-        "pointer-events-none absolute inset-0 h-full w-full stroke-white/[0.04] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_25%,#000_70%,transparent_100%)]",
+        "pointer-events-none absolute inset-0 h-full w-full stroke-white/[0.09] [mask-image:radial-gradient(ellipse_75%_55%_at_50%_25%,#000_70%,transparent_100%)]",
         className
       )}
       {...props}

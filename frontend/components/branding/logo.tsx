@@ -1,4 +1,3 @@
-import React from "react";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -71,7 +70,7 @@ export function Logo({ className, showSubtitle = true }: LogoProps) {
 
       <div className="flex flex-col">
         <span className="text-base font-semibold tracking-tight text-[#F4F4F5]">
-          DineCall <span className="text-[#5EEAD4]">AI</span>
+          Vaani<span className="text-[#5EEAD4]">Book</span>
         </span>
         {showSubtitle && (
           <span className="text-xs font-medium text-[#71717A] -mt-0.5 tracking-wide">

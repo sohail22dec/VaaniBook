@@ -2,11 +2,10 @@
 
 import React from "react";
 import { CheckCircle2, ArrowLeft, AlertCircle, PhoneForwarded } from "lucide-react";
-import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { VoiceWaveform } from "@/components/magic/voice-waveform";
 import { BorderBeam } from "@/components/magic/border-beam";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 
 export type CallStage = "connecting" | "calling" | "active" | "error";
 
@@ -91,7 +90,7 @@ export function CallStatus({
               </div>
               <div>
                 <h3 className="text-base font-medium text-[#F4F4F5]">Initiating call</h3>
-                <p className="text-xs text-[#71717A]">Connecting to DineCall AI</p>
+                <p className="text-xs text-[#71717A]">Connecting to VaaniBook AI</p>
               </div>
             </div>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-[#27272A] bg-[#111113] px-2.5 py-1 text-xs text-[#5EEAD4]">

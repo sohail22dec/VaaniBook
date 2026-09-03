@@ -44,10 +44,10 @@ export function CallButton({
       }
       transition={{ duration: 0.18, ease: "easeOut" }}
       className={cn(
-        "relative flex h-13 w-full items-center justify-center gap-2.5 rounded-xl text-base font-semibold transition-colors select-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5EEAD4] focus-visible:ring-offset-2 focus-visible:ring-offset-[#151518]",
+        "relative flex h-13 w-full items-center justify-center gap-2.5 rounded-xl text-base font-semibold transition-all select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5EEAD4] focus-visible:ring-offset-2 focus-visible:ring-offset-[#151518]",
         disabled
-          ? "bg-[#27272A] text-[#71717A] cursor-not-allowed opacity-60 shadow-none"
-          : "bg-[#5EEAD4] text-[#09090B] shadow-[0_4px_20px_rgba(94,234,212,0.18)] hover:bg-[#2DD4BF]",
+          ? "bg-[#1C1C20] border border-[#27272A] text-[#71717A] cursor-not-allowed opacity-75 shadow-none"
+          : "bg-[#5EEAD4] text-[#09090B] cursor-pointer shadow-[0_4px_24px_rgba(94,234,212,0.22)] hover:bg-[#2DD4BF] hover:shadow-[0_8px_32px_rgba(94,234,212,0.3)]",
         className
       )}
     >
