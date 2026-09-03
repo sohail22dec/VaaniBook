@@ -1,10 +1,11 @@
 import httpx
 from app.config import settings
 
-OUTBOUND_URL = (
-    f"https://apps.sarvam.ai/api/outbounds/v1/orgs/"
-    f"{settings.sarvam_org_id}/workspaces/{settings.sarvam_workspace_id}/outbounds"
-)
+def get_outbound_url() -> str:
+    return (
+        f"https://apps.sarvam.ai/api/outbounds/v1/orgs/"
+        f"{settings.sarvam_org_id}/workspaces/{settings.sarvam_workspace_id}/outbounds"
+    )
 
 def format_phone(phone: str) -> str:
     cleaned = phone.strip().replace(" ", "").replace("-", "")
@@ -13,6 +14,9 @@ def format_phone(phone: str) -> str:
     return cleaned
 
 async def trigger_outbound_call(recipient_phone: str | None = None) -> dict:
+    if not settings.sarvam_api_key or not settings.sarvam_org_id or not settings.sarvam_workspace_id:
+        raise ValueError("Sarvam AI credentials are not configured. Please set the required environment variables.")
+
     phone = recipient_phone or settings.default_recipient_phone
     if not phone:
         raise ValueError("Recipient phone number is required.")
@@ -36,7 +40,8 @@ async def trigger_outbound_call(recipient_phone: str | None = None) -> dict:
         "X-API-Key": settings.sarvam_api_key,
     }
 
+    url = get_outbound_url()
     async with httpx.AsyncClient(timeout=15.0) as client:
-        response = await client.post(OUTBOUND_URL, json=payload, headers=headers)
+        response = await client.post(url, json=payload, headers=headers)
         response.raise_for_status()
         return response.json()
